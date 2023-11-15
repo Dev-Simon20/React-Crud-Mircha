@@ -1,19 +1,63 @@
 import { useState,useEffect } from "react"
 
 const initialForm={
-    name:'Nombre',
-    constelation:'Constelation'
+    name:'',
+    constelation:'',
+    id:null
 }
+        // createData={createData} 
+        // updateData={updateData} 
+        // dataToEdit={dataToEdit}
+        // setDataToEdit={setDataToEdit}
 
+const CrudForm=({createData,updateData,setDataToEdit})=>{
 
-const CrudForm=()=>{
-    
     const [form,setForm]=useState(initialForm);
-    const handleChange=(e)=>{}
-    const handleSubmit=(e)=>{
-    
+
+    const handleChange=(e)=>{
+        // Mi forma de actualizar el estado form
+        // if (e.target.name=='name') {
+        //     let dates={
+        //         name:e.target.value,
+        //         constelation:form.constelation
+        //     }
+        //     setForm(dates);
+        // }
+        // else{
+        //     let dates={
+        //         name:form.name,
+        //         constelation:e.target.value
+        //     }
+        //     setForm(dates);
+        // }
+        
+        //La forma de Jhon Mircha
+        setForm({
+            ...form,
+            [e.target.name]:e.target.value
+        })
     }
-    const handleReset=(e)=>{}
+
+    const handleSubmit=(e)=>{
+        e.preventDefault();
+        if(!form.name||!form.constelation){
+            alert('Datos incompletos');
+            return;
+        }
+        if(form.id===null){
+            createData(form)
+        }
+        else{
+            updateData(form);
+        }
+        handleReset();
+    }
+    const handleReset=(e)=>{
+        setForm(initialForm);
+        setDataToEdit(null);
+    }
+
+    
     return(
         <>
         <p>crud Form</p>

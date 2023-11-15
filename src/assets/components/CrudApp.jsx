@@ -34,13 +34,38 @@ const initialDB=[
     }
 ]
 const CrudApp=()=>{
-
     const [db,setDb]=useState(initialDB);
+    const[dataToEdit,setDataToEdit]=useState(null);
+    const createData=(data)=>{
+        let idDb=db.length+1;
+        let dataProces={
+            id:idDb,
+            name:data.name,
+            constelation:data.constelation
+        }
+        setDb((db)=>[...db,dataProces])
+    }
+    const updateData=(data)=>{
+
+    }
+    const deleteData=(id)=>{
+  
+    }
     return(
         <>
         <h2>Crud App</h2>
-        <CrudForm/>
-        <CrudTabtle data={db}></CrudTabtle>
+        <CrudForm 
+        createData={createData} 
+        updateData={updateData} 
+        dataToEdit={dataToEdit}
+        setDataToEdit={setDataToEdit}
+        />
+
+        <CrudTabtle 
+        data={db} 
+        setDataToEdit={setDataToEdit}
+        deleteData={deleteData}>       
+        </CrudTabtle>
         </>
     )
 

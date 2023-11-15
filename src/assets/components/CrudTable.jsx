@@ -14,8 +14,8 @@ const CrudTable=({data})=>{
                 </tr>
             </thead>
             <tbody>
-                {data.length===0? <tr><td colSpan="3">SinDatos</td></tr>:data.map((data,index)=>(
-                    <CrudTableRow name={data.name} constelation={data.constelation} key={index}></CrudTableRow>
+                {data.length===0? <tr><td colSpan="3">SinDatos</td></tr>:data.map((data)=>(
+                    <CrudTableRow name={data.name} constelation={data.constelation} key={data.id}></CrudTableRow>
                 ))}
             </tbody>
         </table>
