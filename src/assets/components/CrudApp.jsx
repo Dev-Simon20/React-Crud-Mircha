@@ -37,6 +37,7 @@ const CrudApp=()=>{
     const [db,setDb]=useState(initialDB);
     const[dataToEdit,setDataToEdit]=useState(null);
     const createData=(data)=>{
+        // Se Creara el id obteniedo el nuemro de objetos y sumandole 1
         let idDb=db.length+1;
         let dataProces={
             id:idDb,
