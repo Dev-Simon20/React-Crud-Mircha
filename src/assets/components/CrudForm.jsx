@@ -10,9 +10,17 @@ const initialForm={
         // dataToEdit={dataToEdit}
         // setDataToEdit={setDataToEdit}
 
-const CrudForm=({createData,updateData,setDataToEdit})=>{
+const CrudForm=({createData,updateData,setDataToEdit,dataToEdit})=>{
 
     const [form,setForm]=useState(initialForm);
+
+    useEffect(()=>{
+        if(dataToEdit){
+            setForm(dataToEdit)
+        }else{
+            setForm(initialForm)
+        }
+    },(dataToEdit))
 
     const handleChange=(e)=>{
         // Mi forma de actualizar el estado form
@@ -60,8 +68,7 @@ const CrudForm=({createData,updateData,setDataToEdit})=>{
     
     return(
         <>
-        <p>crud Form</p>
-        <h3>Agregar</h3>
+        <h3>{dataToEdit?'Editar':'Agregar'}</h3>
         <form onSubmit={handleSubmit}>
 
          <input type="text" name="name" placeholder="Ingrese el nombre" onChange={handleChange} value={form.name}

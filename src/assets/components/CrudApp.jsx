@@ -37,20 +37,23 @@ const CrudApp=()=>{
     const [db,setDb]=useState(initialDB);
     const[dataToEdit,setDataToEdit]=useState(null);
     const createData=(data)=>{
-        // Se Creara el id obteniedo el nuemro de objetos y sumandole 1
         let idDb=db.length+1;
-        let dataProces={
-            id:idDb,
-            name:data.name,
-            constelation:data.constelation
-        }
-        setDb((db)=>[...db,dataProces])
+        data.id=idDb;
+        setDb((db)=>[...db,data])
     }
-    const updateData=(data)=>{
-
+    const updateData=(data)=>{ 
+         let newDb=db.map((inf)=>{
+            if(inf.id==data.id){
+                inf=data;
+            }
+            return inf;
+         })
+         setDb(newDb);
     }
     const deleteData=(id)=>{
-  
+        let newDB=db.filter((data)=>data.id!=id);
+        console.log(newDB);
+        setDb(newDB)
     }
     return(
         <>
