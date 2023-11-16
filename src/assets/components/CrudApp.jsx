@@ -37,8 +37,7 @@ const CrudApp=()=>{
     const [db,setDb]=useState(initialDB);
     const[dataToEdit,setDataToEdit]=useState(null);
     const createData=(data)=>{
-        let idDb=db.length+1;
-        data.id=idDb;
+        data.id=Date.now();
         setDb((db)=>[...db,data])
     }
     const updateData=(data)=>{ 
@@ -51,9 +50,12 @@ const CrudApp=()=>{
          setDb(newDb);
     }
     const deleteData=(id)=>{
-        let newDB=db.filter((data)=>data.id!=id);
+        let isDelete=window.confirm(`Esta seguro de eliminar el registro con el id: ${id}`);
+        if(isDelete){
+            let newDB=db.filter((data)=>data.id!=id);
         console.log(newDB);
         setDb(newDB)
+        }
     }
     return(
         <>
