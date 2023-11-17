@@ -17,8 +17,6 @@ const CrudForm=({createData,updateData,setDataToEdit,dataToEdit})=>{
     useEffect(()=>{
         if(dataToEdit){
             setForm(dataToEdit)
-        }else{
-            setForm(initialForm)
         }
     },(dataToEdit))
 
